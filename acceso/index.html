@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es-ES">
+<!-- La Maison Du Kitzune · Acceso: panel privado para cargar contenido. Guarda en GitHub y la web se republica sola. -->
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#0b0d11">
+  <title>Acceso — La Maison Du Kitzune</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="acceso.css">
+  <script src="acceso.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../">La Maison <em>Du Kitzune</em></a>
+    <span class="tag">Acceso</span>
+    <nav class="top-actions"><a class="ghost" href="../" target="_blank" rel="noopener">Ver la web <span aria-hidden="true">↗</span></a><button id="logout" class="ghost" type="button" hidden>Salir</button></nav>
+  </header>
+
+  <main class="wrap">
+    <!-- Entrada -->
+    <section id="login" class="card login" aria-labelledby="loginTitle">
+      <span class="eyebrow">ACCESO PRIVADO</span>
+      <h1 id="loginTitle">Pasa.<br>Rellena la habitación.</h1>
+      <p class="lead">Desde aquí subes fotos, música, enlaces y textos. Cada cambio aparece en la web en uno o dos minutos.</p>
+      <form id="loginForm" class="form" novalidate>
+        <label for="key">Clave de acceso</label>
+        <input id="key" type="password" autocomplete="current-password" required>
+        <label class="check"><input id="remember" type="checkbox" checked> Recordar en este dispositivo</label>
+        <button class="solid" type="submit">Entrar</button>
+        <p id="loginMsg" class="msg" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- Panel -->
+    <section id="app" class="app" hidden>
+      <div class="card add" aria-labelledby="addTitle">
+        <h2 id="addTitle">Añadir contenido</h2>
+        <div class="chips" role="tablist" aria-label="Tipo de contenido">
+          <button class="chip" role="tab" id="tab-files" data-mode="files" aria-selected="true" aria-controls="mode-files"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0-4.5 4.5M12 4l4.5 4.5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Subir archivos</button>
+          <button class="chip" role="tab" id="tab-links" data-mode="links" aria-selected="false" aria-controls="mode-links" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg>Sitios web</button>
+          <button class="chip" role="tab" id="tab-text" data-mode="text" aria-selected="false" aria-controls="mode-text" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9zM9 5.5H6.5A1.5 1.5 0 0 0 5 7v12.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V7a1.5 1.5 0 0 0-1.5-1.5H15M8.5 12h7M8.5 15.5h5"/></svg>Texto copiado</button>
+        </div>
+
+        <!-- Subir archivos -->
+        <div id="mode-files" class="mode" role="tabpanel" aria-labelledby="tab-files">
+          <div class="dest" role="radiogroup" aria-label="¿Dónde va?">
+            <span class="dest-label">¿Dónde va?</span>
+            <button type="button" role="radio" data-dest="gallery" aria-checked="true">Galería</button>
+            <button type="button" role="radio" data-dest="merch" aria-checked="false">Merch</button>
+            <button type="button" role="radio" data-dest="tracks" aria-checked="false">Música</button>
+            <button type="button" role="radio" data-dest="projects" aria-checked="false">Proyectos</button>
+          </div>
+          <label id="drop" class="drop">
+            <input id="fileInput" type="file" multiple accept="image/jpeg,image/png,image/webp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 15v2.5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
+            <span class="drop-text">Arrastra y suelta archivos para subirlos. <span id="dropTypes">Tipos admitidos: fotos JPG, PNG o WEBP.</span></span>
+            <span class="drop-pick">o toca aquí para elegirlos</span>
+          </label>
+          <p id="destHint" class="hint"></p>
+          <ul id="queue" class="queue" aria-label="Archivos para publicar"></ul>
+          <div id="projectFields" class="form grid" hidden>
+            <div class="full"><label for="pTitle">Título del proyecto *</label><input id="pTitle" maxlength="80"></div>
+            <div><label for="pCategory">Categoría</label><input id="pCategory" maxlength="40" placeholder="Videoclip, diseño…"></div>
+            <div><label for="pYear">Año</label><input id="pYear" maxlength="9" inputmode="numeric" placeholder="2026"></div>
+            <div class="full"><label for="pSummary">Resumen en una línea</label><input id="pSummary" maxlength="120"></div>
+            <div class="full"><label for="pDescription">Descripción</label><textarea id="pDescription" rows="3" maxlength="900"></textarea></div>
+            <div><label for="pLink">Enlace (opcional)</label><input id="pLink" type="url" inputmode="url" placeholder="https://"></div>
+            <div><label for="pLinkLabel">Texto del enlace</label><input id="pLinkLabel" maxlength="30" placeholder="Ver proyecto"></div>
+          </div>
+          <button id="publishFiles" class="solid" type="button" disabled>Publicar</button>
+        </div>
+
+        <!-- Sitios web -->
+        <form id="mode-links" class="mode form" role="tabpanel" aria-labelledby="tab-links" hidden novalidate>
+          <label for="lDest">¿Dónde va el enlace?</label>
+          <select id="lDest">
+            <option value="socials">Redes sociales (cama y contacto)</option>
+            <option value="profiles">Plataformas de música (altavoz)</option>
+            <option value="shop">Tienda de merch (silla)</option>
+            <option value="floor">Suelo · The Okay Ground</option>
+          </select>
+          <label for="lLabel">Nombre</label>
+          <input id="lLabel" maxlength="40" placeholder="Instagram, TikTok, YouTube…">
+          <label for="lUrl">Dirección (URL)</label>
+          <input id="lUrl" type="url" inputmode="url" placeholder="https://" required>
+          <p id="linkHint" class="hint">Pega la dirección completa, empezando por https://</p>
+          <button class="solid" type="submit">Añadir enlace</button>
+        </form>
+
+        <!-- Texto copiado -->
+        <form id="mode-text" class="mode form" role="tabpanel" aria-labelledby="tab-text" hidden novalidate>
+          <fieldset><legend>Sobre mí <small>(la cama)</small></legend>
+            <label for="aTitle">Título</label><input id="aTitle" maxlength="80">
+            <label for="aText">Texto</label><textarea id="aText" rows="7" placeholder="Pega aquí tu texto. Deja una línea en blanco entre párrafos."></textarea>
+            <label for="aQuote">Frase destacada (opcional)</label><input id="aQuote" maxlength="160">
+            <label for="aTags">Etiquetas (opcional, separadas por comas)</label><input id="aTags" maxlength="160" placeholder="Música, Fotografía">
+          </fieldset>
+          <fieldset><legend>Contacto <small>(el portátil)</small></legend>
+            <label for="cEmail">Correo</label><input id="cEmail" type="email" inputmode="email" autocomplete="off" placeholder="nombre@dominio.com">
+            <label for="cNote">Línea bajo el correo (opcional)</label><input id="cNote" maxlength="120">
+          </fieldset>
+          <button class="solid" type="submit">Guardar textos</button>
+        </form>
+
+        <div id="progress" class="progress" hidden><div class="bar"><i id="bar"></i></div><p id="progressText" role="status"></p></div>
+        <footer class="add-foot"><span id="totals">Cargando…</span><a class="ghost small" href="../" target="_blank" rel="noopener">Ver cambios <span aria-hidden="true">↗</span></a></footer>
+      </div>
+
+      <div class="card current" aria-labelledby="currentTitle">
+        <h2 id="currentTitle">Lo que hay en la web</h2>
+        <div id="current"></div>
+      </div>
+
+      <div id="setup" class="card setup" aria-labelledby="setupTitle" hidden>
+        <h2 id="setupTitle">Crear una contraseña para el cliente</h2>
+        <p class="lead small">Has entrado con la clave de GitHub. Elige una contraseña sencilla para Maico: se guarda cifrada en la web y solo abre este panel.</p>
+        <form id="setupForm" class="form" novalidate>
+          <label for="newPass">Contraseña nueva (mínimo 10 caracteres)</label><input id="newPass" type="password" autocomplete="new-password" minlength="10">
+          <label for="newPass2">Repítela</label><input id="newPass2" type="password" autocomplete="new-password">
+          <button class="solid" type="submit">Guardar contraseña</button>
+          <p id="setupMsg" class="msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">Activa JavaScript para usar el panel de acceso.</p></noscript>
+</body>
+</html>

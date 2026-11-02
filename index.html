@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es-ES">
+<!-- La Maison Du Kitzune · entrega v1. Contenido editable: contenido.js. Mantener index.html, contenido.js, assets/ y media/ juntos. -->
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1014"><title>La Maison Du Kitzune — una habitación para explorar</title>
+  <meta name="description" content="La Maison Du Kitzune: una habitación real para explorar. Proyectos, música, fotografías y contacto en cada objeto.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="La Maison Du Kitzune"><meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="La Maison Du Kitzune"><meta property="og:description" content="Una habitación real para explorar: proyectos, música, fotografías y contacto.">
+  <link rel="canonical" href="https://www.lamaisondukitzune.com/"><meta property="og:url" content="https://www.lamaisondukitzune.com/">
+  <meta property="og:image" content="https://www.lamaisondukitzune.com/assets/img/compartir.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="La habitación de La Maison Du Kitzune con escritorio, lámpara, cama y ventana.">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://www.lamaisondukitzune.com/assets/img/compartir.jpg">
+  <link rel="preload" as="image" href="assets/img/habitacion-escritorio.jpg" media="(orientation:landscape), (min-width:1101px)">
+  <link rel="preload" as="image" href="assets/img/habitacion-movil.jpg" media="(orientation:portrait) and (max-width:1100px)">
+  <link rel="stylesheet" href="assets/css/estilos.css">
+  <script src="contenido.js" defer></script>
+  <script src="assets/js/habitacion.js" defer></script>
+</head>
+<body>
+  <main id="room" class="room" data-mood="warm" aria-label="Habitación interactiva">
+    <div class="extension" aria-hidden="true"></div>
+    <div id="frame" class="scene-frame">
+      <picture><source media="(orientation:portrait) and (max-width:1100px)" srcset="assets/img/habitacion-movil.jpg"><img id="photo" class="photo" src="assets/img/habitacion-escritorio.jpg" alt="Una habitación real con un escritorio y portátil, dos altavoces, una lámpara cálida, una cama y una ventana." fetchpriority="high"></picture>
+      <div class="warmth" aria-hidden="true"></div><div class="moonlight" aria-hidden="true"></div>
+      <button class="hotspot" data-object="computer" style="--i:0" aria-label="Portátil: proyectos, galería y contacto" aria-haspopup="dialog"><span class="point"></span><span class="hint"><span>01</span> Proyectos</span></button>
+      <button class="hotspot" data-object="speaker" style="--i:1" aria-label="Altavoz: abrir música" aria-haspopup="dialog"><span class="point"></span><span class="eq eq-speaker" aria-hidden="true"><i></i><i></i><i></i></span><span class="hint"><span>02</span> Música</span></button>
+      <button class="hotspot" data-object="lamp" style="--i:2" aria-label="Lámpara: cambiar iluminación" aria-pressed="true"><span class="point"></span><span class="hint"><span>03</span> La luz</span></button>
+      <button class="hotspot" data-object="bed" style="--i:3" aria-label="Cama: sobre mí y redes" aria-haspopup="dialog"><span class="point"></span><span class="hint"><span>04</span> Sobre mí</span></button>
+      <button class="hotspot" data-object="window" style="--i:4" aria-label="Ventana: activar modo noche" aria-pressed="false"><span class="point"></span><span class="hint"><span>05</span> Modo noche</span></button>
+      <button class="hotspot" data-object="view" style="--i:5" aria-label="Escritorio: verlo de cerca"><span class="point"></span><span class="hint"><span>06</span> De cerca</span></button>
+      <button class="hotspot" data-object="chair" style="--i:6" aria-label="Silla: merch"><span class="point"></span><span class="hint"><span>07</span> <b>Merch</b> <i aria-hidden="true">↗</i></span></button>
+      <a class="hotspot" data-object="floor" style="--i:7" href="#" target="_blank" rel="noopener noreferrer" aria-label="Suelo: abrir el Instagram de The Okay Ground en una pestaña nueva"><span class="point"></span><span class="hint"><span>08</span> <b>The Okay Ground</b> <i aria-hidden="true">↗</i></span></a>
+    </div>
+    <section id="closeup" class="closeup" aria-label="El escritorio de cerca">
+      <div class="cu-bg" aria-hidden="true"></div>
+      <div id="cuFrame" class="cu-frame">
+        <img id="cuPhoto" src="assets/img/escritorio-cerca.jpg" alt="El escritorio de cerca: el portátil encendido entre dos altavoces y la lámpara cálida." decoding="async">
+        <div class="cu-night" aria-hidden="true"></div>
+        <button class="hotspot" data-cu="screen" style="--i:0" aria-label="Pantalla: proyectos, galería y contacto" aria-haspopup="dialog"><span class="point"></span><span class="hint"><span>01</span> Abrir</span></button>
+        <button class="hotspot" data-cu="speaker" style="--i:1" aria-label="Altavoz: abrir música" aria-haspopup="dialog"><span class="point"></span><span class="hint"><span>02</span> Música</span></button>
+        <button class="hotspot" data-cu="lamp" style="--i:2" aria-label="Lámpara: cambiar iluminación" aria-pressed="true"><span class="point"></span><span class="hint"><span>03</span> La luz</span></button>
+      </div>
+      <button id="cuBack" class="quiet-button cu-back">← Volver a la habitación</button>
+    </section>
+    <div class="spot" aria-hidden="true"></div><div class="vignette" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+    <header class="room-header"><span class="brand"><span class="wordmark">La Maison <em>Du Kitzune</em><span class="slash"> / </span><span class="submark">una habitación para explorar</span></span><span class="review-pill" title="Versión de revisión: lo marcado como pendiente no es contenido definitivo">Revisión</span></span><span class="ambience"><i class="amb-dot" aria-hidden="true"></i><span id="ambienceLabel" class="ambience-label">Luz cálida</span></span></header>
+    <div class="invitation" aria-hidden="true"><span class="eyebrow">LA MAISON DU KITZUNE</span><h1>Pasa. Explora.</h1><p>Las historias están en los objetos.</p></div>
+    <footer class="room-footer"><span class="footnote">Un lugar real. Un mundo propio.</span><div class="room-actions"><button id="indexButton" class="quiet-button index-button" aria-haspopup="dialog">Secciones</button><button id="hintsButton" class="quiet-button" aria-pressed="false">Ver pistas <span class="key">H</span></button><button id="helpButton" class="round-button" aria-label="Cómo explorar la habitación">?</button></div></footer>
+    <button id="nowPlaying" class="now-playing" aria-label="Pausar música"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="np-text"><small>Sonando</small><span id="npTitle"></span></span><span id="npGlyph" class="np-glyph" aria-hidden="true">Ⅱ</span></button>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="desktop" class="desktop-window" aria-labelledby="windowTitle">
+    <div class="window-bar"><div class="window-controls"><button id="closeWindow" class="close-dot" aria-label="Cerrar ventana"></button><span></span><span></span></div><span id="windowTitle">La Maison Du Kitzune</span><span id="windowStatus" class="window-status">portfolio</span></div>
+    <div class="window-layout">
+      <nav class="sidebar" aria-label="Secciones del portfolio"><span class="sidebar-label">EXPLORAR</span><button data-tab="projects" class="nav-item active"><span class="nav-symbol">▦</span>Proyectos<span class="nav-count"></span></button><button data-tab="gallery" class="nav-item"><span class="nav-symbol">◫</span>Galería<span class="nav-count"></span></button><button data-tab="about" class="nav-item"><span class="nav-symbol">◯</span>Sobre mí</button><button data-tab="music" class="nav-item"><span class="nav-symbol">♫</span>Música<span class="nav-count"></span></button><button data-tab="merch" class="nav-item"><span class="nav-symbol">◇</span>Merch<span class="nav-count"></span></button><button data-tab="contact" class="nav-item"><span class="nav-symbol">↗</span>Contacto</button><div class="sidebar-bottom"><span>La Maison Du Kitzune</span><small>Bienvenidos al interior.</small></div></nav>
+      <div id="content" class="window-content" tabindex="-1"></div>
+    </div>
+  </dialog>
+  <dialog id="help" class="help-window" aria-labelledby="helpTitle"><button class="text-close" id="closeHelp" aria-label="Cerrar ayuda">×</button><span class="eyebrow">UNA FORMA DISTINTA DE ENTRAR</span><h2 id="helpTitle">Todo empieza<br>con un objeto.</h2><p><span id="helpLaptop">El portátil guarda proyectos, galería y contacto.</span> Los altavoces tienen música; la cama, algo más personal. La lámpara cambia la luz y la ventana activa el modo noche. Sobre el escritorio puedes acercarte, y el suelo lleva a The Okay Ground.</p><p class="help-keys"><span class="for-keys">Usa <kbd>Tab</kbd> para explorar, <kbd>Enter</kbd> para abrir y <kbd>Esc</kbd> para volver. Las teclas <kbd>1</kbd>–<kbd>5</kbd> abren cada objeto, <kbd>H</kbd> activa las pistas y <kbd>←</kbd> <kbd>→</kbd> recorren la galería.</span><span class="for-touch">Toca cualquier punto para abrir ese objeto, o usa “Secciones”. Desliza la ventana hacia abajo para volver. “Ver pistas” marca todos los objetos.</span></p><button id="startExplore" class="solid-button">Seguir explorando</button></dialog>
+  <noscript><div class="noscript">Activa JavaScript para explorar los objetos de esta habitación.</div></noscript>
+</body>
+</html>

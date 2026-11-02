@@ -1,0 +1,2 @@
+Imágenes de proyectos. JPG, ~1600 px de ancho. Nombres sugeridos: 01.jpg … 06.jpg (máximo 6).
+La ruta que se escribe en contenido.js es relativa, p. ej. media/proyectos/01.jpg

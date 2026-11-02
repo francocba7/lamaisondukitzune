@@ -1,0 +1,2 @@
+Fotos de la galería. JPG, ~1600 px el lado mayor. Máximo 12.
+La ruta que se escribe en contenido.js es relativa, p. ej. media/galeria/01-habitacion-dia.jpg

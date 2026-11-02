@@ -1,0 +1,2 @@
+MP3 y portadas cuadradas (~800x800). Nombres sugeridos: 01.mp3 + 01.jpg … 05 (máximo 5 temas).
+La ruta que se escribe en contenido.js es relativa, p. ej. media/musica/01.jpg
