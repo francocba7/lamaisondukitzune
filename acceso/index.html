@@ -113,9 +113,10 @@
 
       <div id="setup" class="card setup" aria-labelledby="setupTitle" hidden>
         <h2 id="setupTitle">Crear una contraseña para el cliente</h2>
-        <p class="lead small">Has entrado con la clave de GitHub. Elige una contraseña sencilla para Maico: se guarda cifrada en la web y solo abre este panel.</p>
+        <p class="lead small">Has entrado con la clave de GitHub. Crea una contraseña para Maico (mejor la generada): se guarda cifrada en la web y solo abre este panel.</p>
         <form id="setupForm" class="form" novalidate>
-          <label for="newPass">Contraseña nueva (mínimo 10 caracteres)</label><input id="newPass" type="password" autocomplete="new-password" minlength="10">
+          <label for="newPass">Contraseña nueva (mínimo 16 caracteres)</label><input id="newPass" type="password" autocomplete="new-password" minlength="16">
+          <button id="genPass" class="ghost small gen" type="button">Generar una segura</button>
           <label for="newPass2">Repítela</label><input id="newPass2" type="password" autocomplete="new-password">
           <button class="solid" type="submit">Guardar contraseña</button>
           <p id="setupMsg" class="msg" role="status"></p>

@@ -68,15 +68,17 @@ const serialize = (original, site) => {
 };
 
 // ---- Contraseña del cliente (clave de GitHub cifrada) ----
-const deriveKey = async (pass, salt) => crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:310000, hash:'SHA-256'},
+// clave.json es público: la protección es una contraseña larga (mín. 16, idealmente la generada) + PBKDF2 lento.
+const ITERATIONS = 600000;
+const deriveKey = async (pass, salt, iterations = ITERATIONS) => crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations, hash:'SHA-256'},
   await crypto.subtle.importKey('raw', utf8(pass), 'PBKDF2', false, ['deriveKey']), {name:'AES-GCM', length:256}, false, ['encrypt', 'decrypt']);
 async function lock(token, pass){
   const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
   const data = new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM', iv}, await deriveKey(pass, salt), utf8(token)));
-  return {v:1, salt:bytesToB64(salt), iv:bytesToB64(iv), data:bytesToB64(data)};
+  return {v:1, it:ITERATIONS, salt:bytesToB64(salt), iv:bytesToB64(iv), data:bytesToB64(data)};
 }
 async function unlock(box, pass){
-  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64ToBytes(box.iv)}, await deriveKey(pass, b64ToBytes(box.salt)), b64ToBytes(box.data));
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64ToBytes(box.iv)}, await deriveKey(pass, b64ToBytes(box.salt), box.it || ITERATIONS), b64ToBytes(box.data));
   return new TextDecoder().decode(plain);
 }
 
@@ -174,11 +176,18 @@ $('#loginForm').addEventListener('submit', async e => {
 });
 $('#logout').addEventListener('click', () => {clearToken();location.reload()});
 
+// Contraseña aleatoria legible (5 grupos de 4, ~100 bits), fácil de copiar por WhatsApp.
+$('#genPass').addEventListener('click', () => {
+  const abc = 'abcdefghjkmnpqrstuvwxyz23456789', r = crypto.getRandomValues(new Uint8Array(20));
+  const pass = [...r].map(x => abc[x % abc.length]).join('').match(/.{4}/g).join('-');
+  $('#newPass').value = $('#newPass2').value = pass;$('#newPass').type = 'text';
+  $('#setupMsg').className = 'msg ok';$('#setupMsg').textContent = 'Cópiala ahora y guárdala: ' + pass;
+});
 $('#setupForm').addEventListener('submit', async e => {
   e.preventDefault();
   const p1 = $('#newPass').value, p2 = $('#newPass2').value, msg = $('#setupMsg');
   msg.className = 'msg';
-  if (p1.length < 10){msg.textContent = 'Usa al menos 10 caracteres.';return}
+  if (p1.length < 16){msg.textContent = 'Usa al menos 16 caracteres (o pulsa «Generar una segura»).';return}
   if (p1 !== p2){msg.textContent = 'Las dos contraseñas no coinciden.';return}
   if (state.busy) return;
   setBusy(true);progress(10, 'Guardando la contraseña…');
